@@ -7,10 +7,15 @@
 		<title>哪家餐厅最值得投资：让数字来说话</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/solarized.css">
+		<link rel="stylesheet" href="css/theme/blood.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<style>
+			.reveal em {
+				color: red;
+			}
+		</style>
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -25,15 +30,62 @@
 		<div class="reveal">
 			<div class="slides">
 				<section data-markdown>
-					<script type="text/template">
-						## Which Restaurant to Investigate
-						## 让*数字*来说话
+					## 北京餐厅面面观
 
-						数据可视化工作坊小组
+					数据可视化工作坊小组
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						### 哪家餐厅最值得投资
+						### 让<em>数字</em>来说话
 				  </script>
 				</section>
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<section data-markdown>
+						### 分析主体
+						九毛九山西面馆、云海肴云南菜、刀小蛮云南米线、和府捞面、阿香米线
+					</section>
+					<section data-markdown>
+						### 所用素材
+						星级、口味、环境、服务、人均、全文情感、服务/管理、就餐环境、口味、等位、上菜速度、地理位置、到店场景、性价比、活动/优惠/团购、非评价、其他评价
+					</section>
+					<section data-markdown>
+						### 分析思路
+						总体思路是制作一个清晰又详实、可供直观对比各家饭店得分的可视化仪表板。
+						各家饭店得分包括客观得分（星级、口味、环境、服务、人均）和主观得分（全文情感、服务/管理、就餐环境、口味、等位、上菜速度、地理位置、到店场景、性价比、活动/优惠/团购、非评价、其他评价）。需注意的是三份原始数据的格式略有不同，因此需要提前清洗。
+					</section>
+					<section data-markdown>
+						### 这样一个仪表板将会包括以下几个内容
+						1. 可自由切换维度的地理地图及当地物价、商业、交通情况
+						2. 饭店品牌相关信息（经营、历史、利润等）的介绍视图
+						3. 可具体查看各饭店客观得分与情感得分的个体视窗
+						4. 可直观展现客观得分差异与情感得分差异的比较视窗（分店铺与品牌）
+						5. 将有价值的分析结果用文字总结呈现出来
+					</section>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						### 我为什么不再来这家餐厅
+						听听<em>顾客</em>怎么说
+					</script>
+				</section>
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							### 分析思路
+							#### ［顾客角度］
+							* 顾客对餐厅的评价（差评的特别注意）
+							* 顾客对餐厅的评分（低分注意）
+							* 顾客对口味的评分（低分注意）
+							* 顾客对服务的评分（低分注意）
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							这个角度是关注顾客，对这家店的评价，特别是关注顾客们的差评。<br /><br />通过总价差评，站在顾客的角度来看餐厅的哪些方面做的还不够好，还能从哪些方面进行改进。<br /><br />通过三张图表的数据显示，有顾客对整体餐厅的评价，即文字版、有顾客对餐厅的评分，这是量化的指标、也有顾客对于口味的评分和服务的评分，这些量化指标可以直观显示出门店的综合水平。
+						</script>
+					</section>
+				</section>
 			</div>
 		</div>
 
