@@ -37,7 +37,7 @@
 				<section data-markdown>
 					<script type="text/template">
 						### 哪家餐厅最值得投资
-						### 让<em>数字</em>来说话
+						#### 让<em>数字</em>来说话
 				  </script>
 				</section>
 				<section>
@@ -54,7 +54,8 @@
 						总体思路是制作一个清晰又详实、可供直观对比各家饭店得分的可视化仪表板。
 						各家饭店得分包括客观得分（星级、口味、环境、服务、人均）和主观得分（全文情感、服务/管理、就餐环境、口味、等位、上菜速度、地理位置、到店场景、性价比、活动/优惠/团购、非评价、其他评价）。需注意的是三份原始数据的格式略有不同，因此需要提前清洗。
 					</section>
-					<section data-markdown>
+					<section data-markdown data-background="img/1.jpg"
+					style="background:rgba(0,0,0,0.8)">
 						### 这样一个仪表板将会包括以下几个内容
 						1. 可自由切换维度的地理地图及当地物价、商业、交通情况
 						2. 饭店品牌相关信息（经营、历史、利润等）的介绍视图
@@ -85,6 +86,90 @@
 							这个角度是关注顾客，对这家店的评价，特别是关注顾客们的差评。<br /><br />通过总价差评，站在顾客的角度来看餐厅的哪些方面做的还不够好，还能从哪些方面进行改进。<br /><br />通过三张图表的数据显示，有顾客对整体餐厅的评价，即文字版、有顾客对餐厅的评分，这是量化的指标、也有顾客对于口味的评分和服务的评分，这些量化指标可以直观显示出门店的综合水平。
 						</script>
 					</section>
+					<section>
+						<!-- 图表1 -->
+						<div id="customers" style="width: 1000px;height: 600px;"></div>
+					</section>
+					<section data-markdown data-background="img/2.jpg"
+					style="background:rgba(0,0,0,0.8)">
+						顾客对口味、服务的评分：通过*饼图*展示
+
+						顾客对餐厅的总体评价：制作成*词云*
+					</section>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						### 吸引客人与留住客人的秘诀
+						#### 寻找<em>关键因素</em>
+					</script>
+				</section>
+				<section>
+					<section data-markdown>
+						### 维度：店铺的吸引力
+						指标：首次来店/下次再来与“地理位置、价格之间的关系”
+
+						展现形式：
+					</section>
+					<section>
+						<!-- 图表1 -->
+						<div id="bubble" style="width: 980px;height: 600px;"></div>
+					</section>
+					<section data-markdown>
+						### 维度：顾客黏性
+
+						指标：看不同店铺“多次来店”顾客的占比
+
+						展现形式：饼图
+					</section>
+					<section data-markdown>
+						### 维度：	店铺需要改进之处
+
+						指标：下次来/不来与“环境、服务、口味”之间的关系
+
+						展现形式： 用雷达图展现不同指标的影响大小
+					</section>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						### 优惠活动真的让顾客觉得有性价比吗
+						#### <em>关联</em>的探索
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						### 哪些指标容易被顾客挑剔
+						#### <em>纵向</em>比较变量
+					</script>
+				</section>
+				<section>
+					<section data-markdown>
+						#### 呈现方式：关系图
+						环境、服务、菜品、速度、价格为大类，用圆圈的大小表示不满意的程度or满意的程度，相应地同色小圆表示大类的分支，比如环境里有：地理位置难找、就餐环境不卫生、人多等（根据数据走）。
+					</section>
+					<section>
+						<img src="img/4.jpg" />
+					</section>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						### 来餐厅吃饭的主要都有哪些人
+						#### 用户<em>群体画像</em>
+					</script>
+				</section>
+				<section>
+					<section data-markdown data-background="img/3.jpg"
+					style="background:rgba(0,0,0,0.8)">
+						新顾客     老顾客   ｜   潜在回头客  流失顾客
+
+						比例（饼图）（新顾客／有评价的总人数）（多次来的／xxx的总人数）｜（表示下次再来的／新顾客）（表示不再来的／xxx的总人数）
+
+						关注点（雷达图）新顾客来店的原因及其占比多少  其他同
+
+						同伴（数据貌似不好抓呀）
+					</section>
+					<section>
+						<img src="img/3.jpg" />
+					</section>
 				</section>
 			</div>
 		</div>
@@ -104,6 +189,264 @@
 					{ src: 'plugin/notes/notes.js', async: true },
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
 				]
+			});
+		</script>
+
+		<!-- 百度Echarts -->
+		<script src="js/echarts.min.js"></script>
+		<script type="text/javascript">
+			// 基于准备好的dom，初始化echarts实例
+			var myChart = echarts.init(document.getElementById('customers'));
+			var myChart2 = echarts.init(document.getElementById('bubble'));
+
+			// 指定图表的配置项和数据
+			var option = {
+			    title: {
+			        text: '餐厅雷达图'
+			    },
+			    legend: {
+			        data: ['图一','图二', '阿香米线', '云海肴']
+			    },
+			    radar: [
+			        {
+			            indicator: [
+			                { text: '餐厅评价' },
+			                { text: '餐厅评分' },
+			                { text: '口味评分' },
+			                { text: '指标四' },
+			                { text: '指标五' }
+			            ],
+			            center: ['25%', '50%'],
+			            radius: 120,
+			            startAngle: 90,
+			            splitNumber: 4,
+			            shape: 'circle',
+			            name: {
+			                formatter:'【{value}】',
+			                textStyle: {
+			                    color:'#72ACD1'
+			                }
+			            },
+			            splitArea: {
+			                areaStyle: {
+			                    color: ['rgba(114, 172, 209, 0.2)',
+			                    'rgba(114, 172, 209, 0.4)', 'rgba(114, 172, 209, 0.6)',
+			                    'rgba(114, 172, 209, 0.8)', 'rgba(114, 172, 209, 1)'],
+			                    shadowColor: 'rgba(0, 0, 0, 0.3)',
+			                    shadowBlur: 10
+			                }
+			            },
+			            axisLine: {
+			                lineStyle: {
+			                    color: 'rgba(255, 255, 255, 0.5)'
+			                }
+			            },
+			            splitLine: {
+			                lineStyle: {
+			                    color: 'rgba(255, 255, 255, 0.5)'
+			                }
+			            }
+			        },
+			        {
+			            indicator: [
+			                { text: '卫生', max: 150 },
+			                { text: '服务', max: 150 },
+			                { text: '菜品', max: 150 },
+			                { text: '等待', max: 120 },
+			                { text: '多样性', max: 108 },
+			                { text: '舒适度', max: 72 }
+			            ],
+			            center: ['75%', '50%'],
+			            radius: 120
+			        }
+			    ],
+			    series: [
+			        {
+			            name: '雷达图',
+			            type: 'radar',
+			            itemStyle: {
+			                emphasis: {
+			                    // color: 各异,
+			                    lineStyle: {
+			                        width: 4
+			                    }
+			                }
+			            },
+			            data: [
+			                {
+			                    value: [100, 8, 0.40, -80, 2000],
+			                    name: '图一',
+			                    symbol: 'rect',
+			                    symbolSize: 5,
+			                    lineStyle: {
+			                        normal: {
+			                            type: 'dashed'
+			                        }
+			                    }
+			                },
+			                {
+			                    value: [60, 5, 0.30, -100, 1500],
+			                    name: '图二',
+			                    areaStyle: {
+			                        normal: {
+			                            color: 'rgba(255, 255, 255, 0.5)'
+			                        }
+			                    }
+			                }
+			            ]
+			        },
+			        {
+			            name: '成绩单',
+			            type: 'radar',
+			            radarIndex: 1,
+			            data: [
+			                {
+			                    value: [120, 118, 130, 100, 99, 70],
+			                    name: '阿香米线',
+			                    label: {
+			                        normal: {
+			                            show: true,
+			                            formatter:function(params) {
+			                                return params.value;
+			                            }
+			                        }
+			                    }
+			                },
+			                {
+			                    value: [90, 113, 140, 30, 70, 60],
+			                    name: '云海肴',
+			                    areaStyle: {
+			                        normal: {
+			                            opacity: 0.9,
+			                            color: new echarts.graphic.RadialGradient(0.5, 0.5, 1, [
+			                                {
+			                                    color: '#B8D3E4',
+			                                    offset: 0
+			                                },
+			                                {
+			                                    color: '#72ACD1',
+			                                    offset: 1
+			                                }
+			                            ])
+			                        }
+			                    }
+			                }
+			            ]
+			        }
+			    ]
+			}
+
+			var bubbleData = [
+			    [[28604,77,17096869,'Australia',1990],[31163,77.4,27662440,'Canada',1990],[1516,68,1154605773,'China',1990],[13670,74.7,10582082,'Cuba',1990],[28599,75,4986705,'Finland',1990],[29476,77.1,56943299,'France',1990],[31476,75.4,78958237,'Germany',1990],[28666,78.1,254830,'Iceland',1990],[1777,57.7,870601776,'India',1990],[29550,79.1,122249285,'Japan',1990],[2076,67.9,20194354,'North Korea',1990],[12087,72,42972254,'South Korea',1990],[24021,75.4,3397534,'New Zealand',1990],[43296,76.8,4240375,'Norway',1990],[10088,70.8,38195258,'Poland',1990],[19349,69.6,147568552,'Russia',1990],[10670,67.3,53994605,'Turkey',1990],[26424,75.7,57110117,'United Kingdom',1990],[37062,75.4,252847810,'United States',1990]],
+			    [[44056,81.8,23968973,'Australia',2015],[43294,81.7,35939927,'Canada',2015],[13334,76.9,1376048943,'China',2015],[21291,78.5,11389562,'Cuba',2015],[38923,80.8,5503457,'Finland',2015],[37599,81.9,64395345,'France',2015],[44053,81.1,80688545,'Germany',2015],[42182,82.8,329425,'Iceland',2015],[5903,66.8,1311050527,'India',2015],[36162,83.5,126573481,'Japan',2015],[1390,71.4,25155317,'North Korea',2015],[34644,80.7,50293439,'South Korea',2015],[34186,80.6,4528526,'New Zealand',2015],[64304,81.6,5210967,'Norway',2015],[24787,77.3,38611794,'Poland',2015],[23038,73.13,143456918,'Russia',2015],[19360,76.5,78665830,'Turkey',2015],[38225,81.4,64715810,'United Kingdom',2015],[53354,79.1,321773631,'United States',2015]]
+			];
+
+			option2 = {
+			    backgroundColor: new echarts.graphic.RadialGradient(0.3, 0.3, 0.8, [{
+			        offset: 0,
+			        color: '#f7f8fa'
+			    }, {
+			        offset: 1,
+			        color: '#cdd0d5'
+			    }]),
+			    title: {
+			        text: '1990 与 2015 年各国家人均寿命与 GDP'
+			    },
+			    legend: {
+			        right: 10,
+			        data: ['1990', '2015']
+			    },
+			    xAxis: {
+			        splitLine: {
+			            lineStyle: {
+			                type: 'dashed'
+			            }
+			        }
+			    },
+			    yAxis: {
+			        splitLine: {
+			            lineStyle: {
+			                type: 'dashed'
+			            }
+			        },
+			        scale: true
+			    },
+			    series: [{
+			        name: '1990',
+			        data: bubbleData[0],
+			        type: 'scatter',
+			        symbolSize: function (data) {
+			            return Math.sqrt(data[2]) / 5e2;
+			        },
+			        label: {
+			            emphasis: {
+			                show: true,
+			                formatter: function (param) {
+			                    return param.data[3];
+			                },
+			                position: 'top'
+			            }
+			        },
+			        itemStyle: {
+			            normal: {
+			                shadowBlur: 10,
+			                shadowColor: 'rgba(120, 36, 50, 0.5)',
+			                shadowOffsetY: 5,
+			                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+			                    offset: 0,
+			                    color: 'rgb(251, 118, 123)'
+			                }, {
+			                    offset: 1,
+			                    color: 'rgb(204, 46, 72)'
+			                }])
+			            }
+			        }
+			    }, {
+			        name: '2015',
+			        data: bubbleData[1],
+			        type: 'scatter',
+			        symbolSize: function (data) {
+			            return Math.sqrt(data[2]) / 5e2;
+			        },
+			        label: {
+			            emphasis: {
+			                show: true,
+			                formatter: function (param) {
+			                    return param.data[3];
+			                },
+			                position: 'top'
+			            }
+			        },
+			        itemStyle: {
+			            normal: {
+			                shadowBlur: 10,
+			                shadowColor: 'rgba(25, 100, 150, 0.5)',
+			                shadowOffsetY: 5,
+			                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+			                    offset: 0,
+			                    color: 'rgb(129, 227, 238)'
+			                }, {
+			                    offset: 1,
+			                    color: 'rgb(25, 183, 207)'
+			                }])
+			            }
+			        }
+			    }]
+			};
+		</script>
+		<script>
+			Reveal.addEventListener('slidechanged', function(event) {
+			    // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+					console.log(event.indexh, event.indexv);
+					if (event.indexh === 4) {
+						if (event.indexv === 2) {
+							// 使用刚指定的配置项和数据显示图表。
+							myChart.setOption(option);
+						}
+					}
+					if (event.indexh === 6) {
+						myChart2.setOption(option2);
+					}
 			});
 		</script>
 	</body>
